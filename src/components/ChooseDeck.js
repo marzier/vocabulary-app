@@ -1,0 +1,64 @@
+import React, { useState } from 'react';
+import { Route, Link } from 'react-router-dom'
+
+import Groups from './Groups';
+
+function ChooseDeck(props) {
+   const [theDeck, setTheDeck] = useState(props.deck)
+
+   //console.log("in choosedeck:", props);
+   
+   // useEffect(()=>{
+   //    setTheDeck(props.deck);
+   // }, []);
+   
+  function arrayTo2DArray2(list, howMany) {
+    var idx = 0
+    var result = []
+  
+    while (idx < list.length) {
+      if (idx % howMany === 0) result.push([])
+      result[result.length - 1].push(list[idx++])
+    }
+  
+    return result
+  }
+  
+  const splitDict = arrayTo2DArray2(theDeck, 50)
+  
+  return (
+    <>
+      {/* {console.log("in chooseDeck")} */}
+      
+      <Route exact path={`${props.match.path}`} render={()=>
+         (<div class="choose_group">
+            <h2>{props.deckName}'s List</h2>
+
+            <h3>Choose Group</h3>
+
+            <div class="list_of_groups">
+              {splitDict.map((element, index)=>{
+                return (
+                    <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
+                            {`Group ${index+1}`}
+                    </Link> )
+              })}
+            </div>
+         </div> )} 
+      />
+      
+      {splitDict.map((element, index)=>{
+      return <Route  path={`${props.match.path}/${index+1}`} key={index}
+                     render={props=>
+                        <Groups {...props} subList={element} />
+                     } 
+              />
+      })}
+    </>
+  );
+}
+
+export default ChooseDeck;
+
+
+
