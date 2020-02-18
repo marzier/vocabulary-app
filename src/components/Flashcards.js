@@ -1,5 +1,6 @@
 import React, { useEffect , useState } from 'react';
 import { Swipeable } from "react-swipeable";
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 const Flashcards = ({ stack }) =>{
@@ -56,9 +57,21 @@ const Flashcards = ({ stack }) =>{
          return (
             <div class="isFlipped_display">
                <h1>{flashCard[0].word}</h1>
+
+            <CSSTransitionGroup
+               transitionName="example"
+               transitionEnterTimeout={100}
+               transitionLeaveTimeout={100}
+               transitionAppear={true}
+               transitionAppearTimeout={100}
+               transitionEnter={true}
+               transitionLeave={true}>
                {flashCard.map((word)=>{
                   return <p class="gloss" key={Math.random()}>{word.gloss}</p>
                })}
+            </CSSTransitionGroup>
+
+
             </div>
       )} else {
          return (
@@ -87,36 +100,48 @@ const Flashcards = ({ stack }) =>{
    // }
 
    return (
-      <div class="flashcards">
+      <div>
+         <CSSTransitionGroup
+            transitionName="option2"
+            transitionEnterTimeout={100}
+            transitionLeaveTimeout={500}
+            transitionAppear={true}
+            transitionAppearTimeout={200}
+            transitionEnter={true}
+            transitionLeave={true}
+         >        
+            <div class="flashcards">
 
-         <Swipeable {...config}>
-         <div class="flashcards_main" onClick={()=>flipCard()}>
-            {flashCardSideDisplayed()}
+               <Swipeable {...config}>
+               <div class="flashcards_main" onClick={()=>flipCard()}>
+                  {flashCardSideDisplayed()}
 
-            <button className='button1' 
-               onClick={()=>flipCard()}>DEFINE &darr;</button>
-            <button className='button1' 
-               onClick={(e)=>{
-                  getNextFlashCard(e);
-               }}>NEXT WORD &rarr;</button>
-         </div>
-         </Swipeable>
+                  <button className='button1' 
+                     onClick={()=>flipCard()}>DEFINE &darr;</button>
+                  <button className='button1' 
+                     onClick={(e)=>{
+                        getNextFlashCard(e);
+                     }}>NEXT WORD &rarr;</button>
+               </div>
+               </Swipeable>
 
-         <div class="flashcards_words">
-               <h3> Words in this Stack </h3>
-               <div className='stackList'>{stack[0][0].word}</div>
-               <div className='stackList'>{stack[1][0].word}</div>
-               <div className='stackList'>{stack[2][0].word}</div>
-               <div className='stackList'>{stack[3][0].word}</div>
-               <div className='stackList'>{stack[4][0].word}</div>
-               <div className='stackList'>{stack[5][0].word}</div>
-               <div className='stackList'>{stack[6][0].word}</div>
-               <div className='stackList'>{stack[7][0].word}</div>
-               <div className='stackList'>{stack[8][0].word}</div>
-               <div className='stackList'>{stack[9][0].word}</div>
-         </div>
+               <div class="flashcards_words">
+                     <h3> Words in this Stack </h3>
+                     <div className='stackList'>{stack[0][0].word}</div>
+                     <div className='stackList'>{stack[1][0].word}</div>
+                     <div className='stackList'>{stack[2][0].word}</div>
+                     <div className='stackList'>{stack[3][0].word}</div>
+                     <div className='stackList'>{stack[4][0].word}</div>
+                     <div className='stackList'>{stack[5][0].word}</div>
+                     <div className='stackList'>{stack[6][0].word}</div>
+                     <div className='stackList'>{stack[7][0].word}</div>
+                     <div className='stackList'>{stack[8][0].word}</div>
+                     <div className='stackList'>{stack[9][0].word}</div>
+               </div>
 
-         {/* mapping over stack doens't work, why?! */}
+               {/* mapping over stack doens't work, why?! */}
+            </div>
+         </CSSTransitionGroup> 
       </div>
    )
 }

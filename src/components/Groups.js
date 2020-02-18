@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import Flashcards from './Flashcards';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 function Groups(props) {
@@ -28,15 +29,28 @@ function Groups(props) {
       {/*  */}
 
       <Route exact path={props.match.path} render={()=>
-            <div className="choose_stack">
-              <h3>Select Stack</h3>
-              <div className="separator"></div>
-              {stacks.map((element, index)=>{
-                return <Link className="link" to={`${props.match.path}/stack/${index+1}`} key={index}>
-                        {`Stack ${index+1}`}
-                        </Link>
-              })}
+            
+            <div>
+              <CSSTransitionGroup
+                transitionName="option2"
+                transitionEnterTimeout={100}
+                transitionLeaveTimeout={500}
+                transitionAppear={true}
+                transitionAppearTimeout={200}
+                transitionEnter={true}
+                transitionLeave={true}
+              >
+                <div className="choose_stack">
+                  <h3>Select Stack</h3>
+                  <div className="separator"></div>
+                  {stacks.map((element, index)=>{
+                    return <Link className="link" to={`${props.match.path}/stack/${index+1}`} key={index}>
+                            {`Stack ${index+1}`}
+                            </Link>
+                  })}
 
+                </div>
+              </CSSTransitionGroup>
             </div>
          } 
       />       

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+
 
 import Groups from './Groups';
 
@@ -31,20 +33,36 @@ function ChooseDeck(props) {
       {/* {console.log("in chooseDeck")} */}
       
       <Route exact path={`${props.match.path}`} render={()=>
-         (<div class="choose_group">
-            <h2>{props.deckName}'s List</h2>
+         (
+         <div>
+            <CSSTransitionGroup
+                transitionName="option2"
+                transitionEnterTimeout={100}
+                transitionLeaveTimeout={500}
+                transitionAppear={true}
+                transitionAppearTimeout={200}
+                transitionEnter={true}
+                transitionLeave={true}
+                unmountOnExit
+            >
+              <div class="choose_group">
+              <h2>{props.deckName}'s List</h2>
 
-            <h3>Choose Group</h3>
+              <h3>Choose Group</h3>
 
-            <div class="list_of_groups">
-              {splitDict.map((element, index)=>{
-                return (
-                    <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
-                            {`G${index+1}`}
-                    </Link> )
-              })}
-            </div>
-         </div> )} 
+              <div class="list_of_groups">
+                {splitDict.map((element, index)=>{
+                  return (
+                      <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
+                              {`G${index+1}`}
+                      </Link> )
+                })}
+              </div>
+              </div>
+            </CSSTransitionGroup> 
+         </div>
+         
+         )} 
       />
       
       {splitDict.map((element, index)=>{

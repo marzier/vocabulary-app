@@ -32,32 +32,31 @@ function App(props) {
   // } 
 
   return (
-    <div className="App">
-      
-      <Link to="/" className="menu">Home</Link>
-      <Link to="/" className="logo">Zen Vocab</Link>
-      {/* <button onClick={()=>goBack()}>Go Back</button> */}
 
-      <Route exact path="/" render={()=>
-         (<div class="choose_list">
-            <h1>Select word list</h1>
+        <div className="App">
+          <Link to="/" className="menu">Home</Link>
+          <Link to="/" className="logo">Zen Vocab</Link>
+          {/* <button onClick={()=>goBack()}>Go Back</button> */}
 
-            {allDecks.map((deckObj)=>(
-              <Link className="deckOptionButton" key={deckObj.path}
-                    to={`/${deckObj.path}/groups`}>{deckObj.name}</Link>
-            ))}
+          <Route exact path="/" render={()=>
+            (<div class="choose_list">
+                <h1>Select word list</h1>
 
-            
-         </div> )} 
-      />
+                {allDecks.map((deckObj)=>(
+                  <Link className="deckOptionButton" key={deckObj.path}
+                        to={`/${deckObj.path}/groups`}>{deckObj.name}</Link>
+                ))}
+ 
+            </div> )} 
+          />
 
-      {allDecks.map((deckObj)=>(
-        <Route  path={`/${deckObj.path}/groups`} key={deckObj.path} render={props=>(
-          <ChooseDeck {...props} deck={deckObj.deck} key={deckObj.path} deckName={deckObj.path}  />  /* deckName={deckObj.path} */
-        )} />
-      ))}
+          {allDecks.map((deckObj)=>(
+            <Route  path={`/${deckObj.path}/groups`} key={deckObj.path} render={props=>(
+              <ChooseDeck {...props} deck={deckObj.deck} key={deckObj.path} deckName={deckObj.path}  />  /* deckName={deckObj.path} */
+            )} />
+          ))}
+        </div>
 
-    </div>
   );
 }
 
@@ -76,15 +75,10 @@ export default App;
 
 
 
-// combine lists (words that appear on both lists. dynamically divide said groups into stacks)
 
 // spaced repitiion and waterfall method 
 // https://blog.prepscholar.com/the-best-way-to-study-sat-vocab-words
 
-
-// Lists
-// collegepanda 
-// https://blog.prepscholar.com/sat-vocabulary-words
 
 
 // marketing 1 - reddit publicity 
@@ -94,7 +88,6 @@ export default App;
 // why should you memorize words?
 // increase reading comprehension
 // etc
-
 
 
 // Direct Hits Vocabulary: 365 words – 12 Hits = 30.4 words per hit
