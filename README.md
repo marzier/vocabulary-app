@@ -15,5 +15,9 @@ You will also see any lint errors in the console.
 ### deployment
 https://zen-vocab.herokuapp.com/
 
+### use
+see next word => use button, right arrow key, or swipe (mobile only)
+see definition => use button, down arrow key, or tap word
+
 ### local
 "vocabulary-flashcards"
