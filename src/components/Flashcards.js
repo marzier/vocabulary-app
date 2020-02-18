@@ -1,4 +1,5 @@
 import React, { useEffect , useState } from 'react';
+import { Swipeable } from "react-swipeable";
 
 
 const Flashcards = ({ stack }) =>{
@@ -7,6 +8,21 @@ const Flashcards = ({ stack }) =>{
 
    const [flashCard, setFlashCard] = useState(randomWord);
    const [isFlipped, setIsFlipped] = useState(false);
+
+   const config = {
+      // https://github.com/FormidableLabs/react-swipeable
+      onSwipedLeft: () => {
+         setFlashCard(stack[Math.floor(Math.random()*stack.length)]);
+         setIsFlipped(false);
+      },
+      onSwipedRight: () => {
+         setFlashCard(stack[Math.floor(Math.random()*stack.length)]);
+         setIsFlipped(false);
+      },
+      // onSwipedUp, onSwipedDown
+      preventDefaultTouchmoveEvent: true,
+      trackMouse: true
+    };
 
    useEffect(() => {
       const handleEsc = (event) => {
@@ -55,12 +71,14 @@ const Flashcards = ({ stack }) =>{
    }
 
    const getNextFlashCard = (e) => {
+      if (!e) e = window.event;
+      e.stopPropagation();
       setFlashCard(stack[Math.floor(Math.random()*stack.length)]);
       setIsFlipped(false);
    }
 
-   const flipCard = () => {
-      setIsFlipped(true)
+   const flipCard = (e) => {
+      setIsFlipped(true);
    }
 
    // if (!stack[0][0].name) { 
@@ -71,14 +89,18 @@ const Flashcards = ({ stack }) =>{
    return (
       <div class="flashcards">
 
-         <div class="flashcards_main">
+         <Swipeable {...config}>
+         <div class="flashcards_main" onClick={()=>flipCard()}>
             {flashCardSideDisplayed()}
 
             <button className='button1' 
                onClick={()=>flipCard()}>DEFINE &darr;</button>
             <button className='button1' 
-               onClick={()=>getNextFlashCard()}>NEXT WORD &rarr;</button>
+               onClick={(e)=>{
+                  getNextFlashCard(e);
+               }}>NEXT WORD &rarr;</button>
          </div>
+         </Swipeable>
 
          <div class="flashcards_words">
                <h3> Words in this Stack </h3>
@@ -95,8 +117,6 @@ const Flashcards = ({ stack }) =>{
          </div>
 
          {/* mapping over stack doens't work, why?! */}
-
-
       </div>
    )
 }

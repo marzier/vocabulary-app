@@ -108,10 +108,19 @@ div.choose_list, .choose_group, .choose_stack {
 @media only screen 
   and (max-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    #root { height: 110vh;} 
-    .flashcards { flex-direction: column !important; align-items: center; }
-    .flashcards_main { margin-right: 0 !important; margin-top: 4em !important; }
+    #root { height: 100vh;} 
+    .flashcards { flex-direction: column !important; align-items: center; margin-top: -5em; }
+    .flashcards_main { margin-right: 0 !important; width: 75vw !important; }
+    .flashcards_words { max-width: 90vw !important; }
+    p.gloss {font-size: calc(10px + 1.5vw);}
+    .stackList {display: inline-block; margin: 5px 9px !important;}
+    .menu, .logo {
+      border: 2px solid white;
+      padding: 6px 12px;
+      font-size: 16px;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.26);
 
+    }
 }
 
 
