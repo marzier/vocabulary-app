@@ -1,4 +1,4 @@
-#root > div {
+#root {
   height: 100vh;
 }
 
@@ -114,14 +114,14 @@ div.choose_list, .choose_group, .choose_stack {
 @media only screen 
   and (max-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    #root { height: 720px;}  /* for XR specifically, otherwise 100vh */
+    #root { height: 720px !important;}  /* for XR specifically, otherwise 100vh */
     .flashcards { flex-direction: column !important; align-items: center;  }
     .flashcards_main { margin-right: 0 !important; width: 82vw !important; padding: 2em 2em !important;}
     .flashcards_words { max-width: 90vw !important; padding: 1em 1em !important; }
     .flashcards_words h3{ margin: 8px 0px;}
-
+    .deckOptionButton { font-size 1em; }
      p.gloss {font-size: calc(12px + 1vw) !important; margin: 5px 0 !important;}
-    .stackList {display: inline-block; margin: 5px 8px !important; font-size: 10px !important;}
+    .stackList {display: inline-block; margin: 5px 8px !important; font-size: 12px !important;}
     .menu, .logo {
       border: 2px solid white;
       padding: 6px 12px;
