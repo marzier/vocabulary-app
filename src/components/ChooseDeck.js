@@ -40,7 +40,7 @@ function ChooseDeck(props) {
               {splitDict.map((element, index)=>{
                 return (
                     <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
-                            {`Group ${index+1}`}
+                            {`G${index+1}`}
                     </Link> )
               })}
             </div>

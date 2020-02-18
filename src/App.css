@@ -5,6 +5,7 @@
 .App {
   /* background-color: #282c34; */
   background: no-repeat center/100% url("./photos/thomas-schweighofer-5dB9WGpJbFc-unsplash.jpg");
+  background-size:  cover;
   min-height: 100%;
   display: flex;
   flex-direction: row;
@@ -93,14 +94,26 @@ div.choose_list, .choose_group, .choose_stack {
   max-width: 85vw;
   flex-wrap: wrap;
   justify-content: center;
-  font-size: 20px;
+  font-size: calc(10px + .8vw); /* calc(10px + 2vmin); */ 
 }
 
 .flashcards {
   display: flex;
   flex-direction: row;
+}
+
+
+/* ----------- mobile and tablet styles ----------- */
+/* Portrait and Landscape */
+@media only screen 
+  and (max-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    #root { height: 110vh;} 
+    .flashcards { flex-direction: column !important; align-items: center; }
+    .flashcards_main { margin-right: 0 !important; margin-top: 4em !important; }
 
 }
+
 
 .flashcards_main, .flashcards_words {
   box-shadow: 0 6px 9px rgba(0,0,0,0.32), 0 3px 6px rgba(0,0,0,0.46); 
