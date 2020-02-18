@@ -114,7 +114,7 @@ div.choose_list, .choose_group, .choose_stack {
 @media only screen 
   and (max-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-    #root { min-height: -webkit-fill-available !important; height: 100vh;}  /* for XR specifically, otherwise 100vh */
+    #root { min-height: -webkit-fill-available !important; height: 710px !important;}  /* for XR specifically, otherwise 100vh */
     .flashcards { flex-direction: column !important; align-items: center;  }
     .flashcards_main { margin-right: 0 !important; width: 82vw !important; padding: 2em 2em !important;}
     .flashcards_words { max-width: 90vw !important; padding: 1em 1em !important; }
