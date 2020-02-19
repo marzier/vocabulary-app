@@ -32,7 +32,6 @@ function App(props) {
   // } 
 
   return (
-
         <div className="App">
           <Link to="/" className="menu">Home</Link>
           <Link to="/" className="logo">Zen Vocab</Link>
@@ -40,7 +39,7 @@ function App(props) {
 
           <Route exact path="/" render={()=>
             (<div class="choose_list">
-                <h1>Select word list</h1>
+                <h1>Select Deck &darr;</h1>
 
                 {allDecks.map((deckObj)=>(
                   <Link className="deckOptionButton" key={deckObj.path}
@@ -56,7 +55,6 @@ function App(props) {
             )} />
           ))}
         </div>
-
   );
 }
 

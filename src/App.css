@@ -65,16 +65,16 @@
   display: block;
   padding: 12px 6px;
   margin: 12px;
-  border: 1px solid grey;
+  border: 2px solid grey;
 
   border-radius: 7px;
   /* display: inline-block; */
   padding: 1em 3em;
   background-color: transparent;
-  color: grey;
+  color: #505050;
   font-size: .7em;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 
@@ -159,8 +159,8 @@ div.choose_list, .choose_group, .choose_stack {
 .flashcards_words {
   flex-grow: 1;
   text-align: center;
-  padding: 2em 1em;
-  font-size: calc(10px + 0.75vw); /* calc(10px + 2vmin); */ 
+  padding: 1.5em 1em;
+  font-size: calc(10px + 0.6vw); /* calc(10px + 2vmin); */ 
 }
 
 p.gloss {
