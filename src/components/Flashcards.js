@@ -32,6 +32,7 @@ const Flashcards = ({ stack }) =>{
 
       if ( 'speechSynthesis' in window ) {
          var to_speak = new SpeechSynthesisUtterance(word);
+         to_speak.rate = 0.75;
          window.speechSynthesis.speak(to_speak);
       }
    };

@@ -56,8 +56,9 @@
 }
 .link {
   display: block;
-  color: #09d3ac;
+  color: darkgreen;
   padding: 8px;
+  text-decoration: none;
 }
 
 
@@ -175,6 +176,10 @@ p.gloss {
 
 .isFlipped_display {
   min-height: 35vh;
+}
+
+.isFlipped_display h1 {
+  cursor:  pointer;
 }
 
 .separator {
