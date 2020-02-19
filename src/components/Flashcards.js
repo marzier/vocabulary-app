@@ -25,6 +25,14 @@ const Flashcards = ({ stack }) =>{
       trackMouse: true
     };
 
+   
+   const speak = (word) => {
+      if ( 'speechSynthesis' in window ) {
+         var to_speak = new SpeechSynthesisUtterance(word);
+         window.speechSynthesis.speak(to_speak);
+      }
+   };
+
    useEffect(() => {
       const handleEsc = (event) => {
          if (event.keyCode === 40) {
@@ -56,7 +64,7 @@ const Flashcards = ({ stack }) =>{
       if (isFlipped) {
          return (
             <div class="isFlipped_display">
-               <h1>{flashCard[0].word}</h1>
+               <h1 onClick={()=>speak(flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
 
             <CSSTransitionGroup
                transitionName="example"
@@ -71,12 +79,11 @@ const Flashcards = ({ stack }) =>{
                })}
             </CSSTransitionGroup>
 
-
             </div>
       )} else {
          return (
             <div class="isFlipped_display">
-               <h1>{flashCard[0].word}</h1>
+               <h1 onClick={()=>speak(flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
                <p class="gloss"></p> 
             </div>
          );
@@ -92,35 +99,6 @@ const Flashcards = ({ stack }) =>{
 
    const flipCard = (e) => {
       setIsFlipped(true);
-   }
-
-   const pronounce = () => {
-      if ('speechSynthesis' in window) {
-
-         var synthesis = window.speechSynthesis;
-       
-         // Get the first `en` language voice in the list
-         var voice = synthesis.getVoices().filter(function(voice) {
-           return voice.lang === 'en';
-         })[0];
-       
-         // Create an utterance object
-         var utterance = new SpeechSynthesisUtterance('Hello World');
-       
-         // Set utterance properties
-         utterance.voice = voice;
-         utterance.pitch = 1.5;
-         utterance.rate = 1.25;
-         utterance.volume = 0.8;
-       
-         // Speak the utterance
-         synthesis.speak(utterance);
-         console.log('Text-to-speech is supported.');
-       
-       } else {
-         console.log('Text-to-speech not supported.');
-       }
-
    }
 
    // if (!stack[0][0].name) { 
@@ -151,10 +129,14 @@ const Flashcards = ({ stack }) =>{
                      onClick={(e)=>{
                         getNextFlashCard(e);
                      }}>NEXT WORD &rarr;</button>
+                  <button className='button1' 
+                     onClick={(e)=>{
+                        getNextFlashCard(e);
+                     }}>NEXT WORD &rarr;</button>
                </div>
                </Swipeable>
 
-               <div class="flashcards_words" onClick={()=>pronounce()}>
+               <div class="flashcards_words">
                      <h3> Words in this Stack </h3>
                      <div className='stackList'>{stack[0][0].word}</div>
                      <div className='stackList'>{stack[1][0].word}</div>
