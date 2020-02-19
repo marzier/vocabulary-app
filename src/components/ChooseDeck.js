@@ -52,6 +52,13 @@ function ChooseDeck(props) {
 
               <div class="list_of_groups">
                 {splitDict.map((element, index)=>{
+                  // for purely aesthetics, add extra character to 1-9 so the groups line up on the page
+                  if (index<9) {
+                    return (
+                      <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
+                              {`G0${index+1}`}
+                      </Link>)
+                  }
                   return (
                       <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
                               {`G${index+1}`}

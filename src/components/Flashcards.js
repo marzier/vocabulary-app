@@ -94,6 +94,35 @@ const Flashcards = ({ stack }) =>{
       setIsFlipped(true);
    }
 
+   const pronounce = () => {
+      if ('speechSynthesis' in window) {
+
+         var synthesis = window.speechSynthesis;
+       
+         // Get the first `en` language voice in the list
+         var voice = synthesis.getVoices().filter(function(voice) {
+           return voice.lang === 'en';
+         })[0];
+       
+         // Create an utterance object
+         var utterance = new SpeechSynthesisUtterance('Hello World');
+       
+         // Set utterance properties
+         utterance.voice = voice;
+         utterance.pitch = 1.5;
+         utterance.rate = 1.25;
+         utterance.volume = 0.8;
+       
+         // Speak the utterance
+         synthesis.speak(utterance);
+         console.log('Text-to-speech is supported.');
+       
+       } else {
+         console.log('Text-to-speech not supported.');
+       }
+
+   }
+
    // if (!stack[0][0].name) { 
    //    console.log(stack);
    //    return <h1>loading</h1>
@@ -125,7 +154,7 @@ const Flashcards = ({ stack }) =>{
                </div>
                </Swipeable>
 
-               <div class="flashcards_words">
+               <div class="flashcards_words" onClick={()=>pronounce()}>
                      <h3> Words in this Stack </h3>
                      <div className='stackList'>{stack[0][0].word}</div>
                      <div className='stackList'>{stack[1][0].word}</div>
