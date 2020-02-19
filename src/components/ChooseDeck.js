@@ -48,7 +48,7 @@ function ChooseDeck(props) {
               <div class="choose_group">
               <h2>{props.deckName}'s List</h2>
 
-              <h3>Choose Group</h3>
+              <h3>&#8212; Choose Group &#8212;</h3>
 
               <div class="list_of_groups">
                 {splitDict.map((element, index)=>{
