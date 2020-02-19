@@ -26,7 +26,10 @@ const Flashcards = ({ stack }) =>{
     };
 
    
-   const speak = (word) => {
+   const speak = (e, word) => {
+      if (!e) e = window.event;
+      e.stopPropagation();
+
       if ( 'speechSynthesis' in window ) {
          var to_speak = new SpeechSynthesisUtterance(word);
          window.speechSynthesis.speak(to_speak);
@@ -64,7 +67,7 @@ const Flashcards = ({ stack }) =>{
       if (isFlipped) {
          return (
             <div class="isFlipped_display">
-               <h1 onClick={()=>speak(flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
+               <h1 onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
 
             <CSSTransitionGroup
                transitionName="example"
@@ -83,7 +86,7 @@ const Flashcards = ({ stack }) =>{
       )} else {
          return (
             <div class="isFlipped_display">
-               <h1 onClick={()=>speak(flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
+               <h1 onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
                <p class="gloss"></p> 
             </div>
          );
@@ -125,10 +128,6 @@ const Flashcards = ({ stack }) =>{
 
                   <button className='button1' 
                      onClick={()=>flipCard()}>DEFINE &darr;</button>
-                  <button className='button1' 
-                     onClick={(e)=>{
-                        getNextFlashCard(e);
-                     }}>NEXT WORD &rarr;</button>
                   <button className='button1' 
                      onClick={(e)=>{
                         getNextFlashCard(e);
