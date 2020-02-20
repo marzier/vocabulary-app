@@ -26,6 +26,16 @@
     -->
     <title>Zen Vocab</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+    <script>
+      function resetHeight(){
+        // reset the body height to that of the inner browser
+        document.body.style.height = window.innerHeight + "px";
+        }
+        // reset the height whenever the window's resized
+        window.addEventListener("resize", resetHeight);
+        // called to initially set the height.
+        resetHeight();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

@@ -109,39 +109,6 @@ div.choose_list, .choose_group, .choose_stack {
   flex-direction: row;
 }
 
-
-/* ----------- mobile and tablet styles ----------- */
-/* Portrait and Landscape */
-@media only screen 
-  and (max-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-    #root { min-height: -webkit-fill-available !important; height: 705px !important;}  /* for XR specifically, otherwise 100vh */
-    .flashcards { flex-direction: column !important; align-items: center;  }
-    .flashcards_main { margin-right: 0 !important; width: 82vw !important; padding: 2em 2em !important;}
-    .flashcards_words { max-width: 90vw !important; padding: 1em 1em !important; }
-    .flashcards_words h3{ margin: 8px 0px;}
-    .deckOptionButton { font-size: 1em; }
-     p.gloss {font-size: calc(12px + 1vw) !important; margin: 5px 0 !important;}
-    .stackList {display: inline-block; margin: 5px 8px !important; font-size: 14px !important;}
-    .menu, .logo {
-      border: 2px solid white;
-      padding: 6px 12px;
-      font-size: 16px;
-      box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.26);
-    }
-    .button1 {
-        padding: 10px 22px;
-        background-color: transparent;
-        color: grey;
-        font-size: .7em;
-        border: 1px solid grey;
-     }
-     .button1:nth-of-type(2) { margin: 0 10px !important; }
-     .choose_group {margin-top: 50px !important; padding: 2.4rem 1.75rem; }
-     .list_of_groups, .choose_stack a { font-size: calc(10px + 1.1vw); /* calc(10px + 2vmin); */ }
-}
-
-
 .flashcards_main, .flashcards_words {
   box-shadow: 0 6px 9px rgba(0,0,0,0.32), 0 3px 6px rgba(0,0,0,0.46); 
   background: rgba(255,255,255, 0.9);
@@ -236,4 +203,37 @@ p.gloss {
 .option2-appear.option2-appear-active {
   opacity: 1;
   transition: opacity .2s ease-in;
+}
+
+
+
+/* ----------- mobile and tablet styles ----------- */
+/* Portrait and Landscape */
+@media only screen 
+  and (max-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #root { min-height: -webkit-fill-available !important; height: 705px !important;}  /* for XR specifically, otherwise 100vh */
+    .flashcards { flex-direction: column !important; align-items: center;  }
+    .flashcards_main { margin-right: 0 !important; width: 82vw !important; padding: 2em 2em !important;}
+    .flashcards_words { max-width: 90vw !important; padding: 1em 1em !important; }
+    .flashcards_words h3{ margin: 8px 0px;}
+    .deckOptionButton { font-size: 1em; }
+     p.gloss {font-size: calc(12px + 1vw) !important; margin: 5px 0 !important;}
+    .stackList {display: inline-block; margin: 5px 8px !important; font-size: 14px !important;}
+    .menu, .logo {
+      border: 2px solid white;
+      padding: 6px 12px;
+      font-size: 16px;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.26);
+    }
+    .button1 {
+        padding: 10px 22px;
+        background-color: transparent;
+        color: grey;
+        font-size: .7em;
+        border: 1px solid grey;
+     }
+     .button1:nth-of-type(2) { margin: 0 10px !important; }
+     .choose_group {margin-top: 50px !important; padding: 2.4rem 1.75rem; }
+     .list_of_groups, .choose_stack a { font-size: calc(10px + 1.1vw); /* calc(10px + 2vmin); */ }
 }
