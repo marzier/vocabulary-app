@@ -17,8 +17,10 @@ https://zen-vocab.herokuapp.com/
 style optimized for desktop and iPhone XR only
 
 ## use
-see next word => use button, right arrow key, or swipe (mobile only)
+see next word => use button, right arrow key, or swipe (mobile only)   
+<br /> 
 see definition => use button, down arrow key, or tap word
+<br /> 
 hear pronunciation => click/tap on word on flashcard
 
 ## local
