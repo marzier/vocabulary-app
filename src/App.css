@@ -4,7 +4,7 @@
 
 .App {
   /* background-color: #282c34; */
-  background: no-repeat center/100% url("./photos/chris-pickett--QKpblZde5I-unsplash.jpg");
+  background: no-repeat center/100% url("./photos/g1080.PNG");
   background-size:  cover;
   min-height: 100%;
   display: flex;
@@ -51,9 +51,10 @@
   border: 1px solid grey;
 }
 
-.button1:nth-of-type(2) {
+.button1:nth-of-type(even) {
    margin: 0 12px;
 }
+
 .link {
   display: block;
   color: darkgreen;

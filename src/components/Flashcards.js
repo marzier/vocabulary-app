@@ -3,7 +3,7 @@ import { Swipeable } from "react-swipeable";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
-const Flashcards = ({ stack }) =>{
+const Flashcards = ({ stack, history, location }) =>{
 
    let randomWord = stack[Math.floor(Math.random()*stack.length)];
 
@@ -105,10 +105,28 @@ const Flashcards = ({ stack }) =>{
       setIsFlipped(true);
    }
 
-   // if (!stack[0][0].name) { 
-   //    console.log(stack);
-   //    return <h1>loading</h1>
-   // }
+   const moveGroup = (direction) => {
+      let pathname = location.pathname; // ex: "/barrons/groups/7/stack/1"
+
+      // find current group number
+      let start_group_num = pathname.indexOf("/groups");
+      let end_group_num = pathname.indexOf("/stack");
+      let current_group_no = pathname.slice(start_group_num+8, end_group_num);
+
+      if (direction === "RIGHT") { 
+         current_group_no++; 
+      } else {
+         current_group_no--;
+      }
+      
+      // find current stack number
+      let current_stack_no = pathname.slice(pathname.length - 1)
+
+      // create new path
+      let next_group_url = `/barrons/groups/${current_group_no}/stack/${current_stack_no}`;
+
+      history.push(next_group_url);
+   }
 
    return (
       <div>
@@ -133,6 +151,11 @@ const Flashcards = ({ stack }) =>{
                      onClick={(e)=>{
                         getNextFlashCard(e);
                      }}>NEXT WORD &rarr;</button>
+                  <button className='button1' 
+                     onClick={()=>moveGroup("LEFT")}>&lArr;</button>
+                  <button className='button1' 
+                     onClick={()=>moveGroup("RIGHT")}>&rArr;</button>
+
                </div>
                </Swipeable>
 
