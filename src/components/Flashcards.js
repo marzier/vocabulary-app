@@ -10,6 +10,9 @@ const Flashcards = ({ stack, history, location }) =>{
    const [flashCard, setFlashCard] = useState(randomWord);
    const [isFlipped, setIsFlipped] = useState(false);
 
+   // the "stack.map" for listing words in that stack didn't work, unless I loaded it like this in state here
+   const [stack2, setStack] = useState(stack);
+
    const config = {
       // https://github.com/FormidableLabs/react-swipeable
       onSwipedLeft: () => {
@@ -159,18 +162,13 @@ const Flashcards = ({ stack, history, location }) =>{
                </div>
                </Swipeable>
 
+
                <div class="flashcards_words">
                      <h3> Words in this Stack </h3>
-                     <div className='stackList'>{stack[0][0].word}</div>
-                     <div className='stackList'>{stack[1][0].word}</div>
-                     <div className='stackList'>{stack[2][0].word}</div>
-                     <div className='stackList'>{stack[3][0].word}</div>
-                     <div className='stackList'>{stack[4][0].word}</div>
-                     <div className='stackList'>{stack[5][0].word}</div>
-                     <div className='stackList'>{stack[6][0].word}</div>
-                     <div className='stackList'>{stack[7][0].word}</div>
-                     <div className='stackList'>{stack[8][0].word}</div>
-                     <div className='stackList'>{stack[9][0].word}</div>
+                     {/* <div className='stackList'>{stack2[0][0].word}</div> was like this*/}
+                     {stack2.map((word) => {
+                        return <div className='stackList'>{word[0].word}</div>
+                     })}
                </div>
 
                {/* mapping over stack doens't work, why?! */}
