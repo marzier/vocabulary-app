@@ -17,6 +17,7 @@ import './App.css';
 
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
+import Modal from "./components/AddDeckButton.js";
 
 function App(props) {
 
@@ -29,6 +30,8 @@ function App(props) {
 
   const [users, setUsers] = useState([]);
   const [decks, setDecks] = useState(initialDecks);
+
+  const [showModal, setSM] = useState(false);
 
 
   useEffect(() => {
@@ -73,12 +76,16 @@ function App(props) {
   //   setDecks({...Decks, newDeck })
   // } 
 
-  return (
+  return (<>
+        
+        <nav className="nav">
+            <Link to="/" className="navLinks">Home</Link>
+            <Link to="/login" className="navLinks">Login</Link>
+            <Link to="/register" className="navLinks">Register</Link>
+        </nav>
+ 
         <div className="App">
-          <Link to="/" className="menu">Home</Link>
-          <Link to="/" className="logo">Zen Vocab</Link>
-          <Link to="/login" className="">Login</Link>
-          <Link to="/register" className="">Register</Link>
+
           {/* <button onClick={()=>goBack()}>Go Back</button> */}
 
           <Route path="/login" component={Login} />  
@@ -98,7 +105,8 @@ function App(props) {
                         to={`/${deckObj.path}/groups`}>{deckObj.name}</Link>
                 ))}
 
-                <div className="deckOptionButton" style={{"font-weight":"bold"}}>Add Deck</div>
+                <div className="deckOptionButton" onClick={()=>setSM(!showModal)}>Add Deck</div>
+                <Modal showModal={showModal}/>
  
             </div> )} 
           />
@@ -109,7 +117,7 @@ function App(props) {
             )} />
           ))}
         </div>
-  );
+  </>);
 }
 
 {/* 
