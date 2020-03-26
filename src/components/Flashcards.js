@@ -76,7 +76,6 @@ const Flashcards = ({ stack, history, location }) =>{
                   <span className="speaker" role="img" aria-label="pronounce">&nbsp;&#128265;</span>
                </h1>
 
-
             <CSSTransitionGroup
                transitionName="example"
                transitionEnterTimeout={100}
@@ -96,7 +95,7 @@ const Flashcards = ({ stack, history, location }) =>{
             <div class="isFlipped_display">
                <h1 
                   onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} 
-                  <span role="img" aria-label="pronounce">&nbsp;&#128265;</span>
+                  <span className="speaker" role="img" aria-label="pronounce">&nbsp;&#128265;</span>
                </h1>
                <p class="gloss"></p> 
             </div>
@@ -156,7 +155,7 @@ const Flashcards = ({ stack, history, location }) =>{
                   <button className='button1' 
                      onClick={(e)=>{
                         getNextFlashCard(e);
-                     }}>NEXT WORD &rarr;</button>
+                     }}>NEXT WORD&rarr;</button>
                   <button className='button1' 
                      onClick={()=>moveGroup("LEFT")}>&lArr;</button>
                   <button className='button1' 

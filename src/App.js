@@ -9,7 +9,6 @@ import './components/ChooseDeck';
 import PrepScholar from './word-lists/prep-scholar';
 import Kaplan from './word-lists/kaplan100';
 import Barrons_1 from './word-lists/barrons_subset_1';
-import Barrons_2 from './word-lists/barrons_subset_2';
 
 import ChooseDeck from './components/ChooseDeck';
 
@@ -23,10 +22,7 @@ import Modal from "./components/AddDeckButton.js";
 function App(props) {
 
   const initialDecks = [
-    {deck: PrepScholar, name:"Prep Scholar", path:"prepScholar"}, 
-    {deck: Kaplan, name:"Kaplan", path:"kaplan"},
-    {deck: Barrons_1, name:"Barrons 1", path:"barrons"},
-    {deck: Barrons_2, name:"Barrons 2", path:"barrons2"}
+    {deck: Barrons_1, name:"Barrons 3500", path:"Barrons"},
   ];
 
   const [decks, setDecks] = useState(initialDecks);
@@ -78,7 +74,8 @@ function App(props) {
          
           <Route exact path="/" render={()=>
             (<div class="choose_list">
-                <h1>Select Deck &darr;</h1>
+                <h1>Select Deck</h1>
+                <div className="separator"></div>
 
                 {decks.map((deckObj)=>(
                   <Link className="deckOptionButton" key={deckObj.path}
