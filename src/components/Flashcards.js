@@ -73,8 +73,9 @@ const Flashcards = ({ stack, history, location }) =>{
             <div class="isFlipped_display">
                <h1 
                   onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} 
-                  <span role="img" aria-label="pronounce">&nbsp;&#128265;</span>
+                  <span className="speaker" role="img" aria-label="pronounce">&nbsp;&#128265;</span>
                </h1>
+
 
             <CSSTransitionGroup
                transitionName="example"
@@ -140,13 +141,9 @@ const Flashcards = ({ stack, history, location }) =>{
    return (
       <div>
          <CSSTransitionGroup
-            transitionName="option2"
-            transitionEnterTimeout={100}
-            transitionLeaveTimeout={500}
-            transitionAppear={true}
-            transitionAppearTimeout={200}
-            transitionEnter={true}
-            transitionLeave={true}
+            transitionName="option2" transitionEnterTimeout={100} transitionLeaveTimeout={500}
+            transitionAppear={true}  transitionAppearTimeout={200}
+            transitionEnter={true}   transitionLeave={true}
          >        
             <div class="flashcards">
 

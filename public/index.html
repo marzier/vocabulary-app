@@ -33,6 +33,7 @@
         }
         // reset the height whenever the window's resized
         window.addEventListener("resize", resetHeight);
+        document.body.addEventListener('touchstart', function(e){ e.preventDefault(); })
         // called to initially set the height.
         resetHeight();
     </script>
