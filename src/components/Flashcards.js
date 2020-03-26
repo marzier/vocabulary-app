@@ -171,10 +171,12 @@ const Flashcards = ({ stack, history, location }) =>{
 
                <div class="flashcards_words">
                      <h3> Words in this Stack </h3>
+
                      {/* <div className='stackList'>{stack2[0][0].word}</div> was like this*/}
                      {stack2.map((word) => {
                         return <div className='stackList'>{word[0].word}</div>
                      })}
+
                </div>
 
                {/* mapping over stack doens't work, why?! */}

@@ -7,7 +7,8 @@ const AWTD = ({ show, deck_name }) => {
       deck_name
    };
 
-   const [words, setWords ] = useState(initialInput);
+   const [words, setWords] = useState(initialInput);
+   const [error, setError] = useState(null);
 
    const hndlChange = (e) => {
       setWords({...words, [e.target.name]:e.target.value});
@@ -18,11 +19,15 @@ const AWTD = ({ show, deck_name }) => {
 
       axios.post('http://localhost:6001/words', words, {headers:{authorization: localStorage.getItem('token')}})
          .then((res) => {
-            console.log("add words to deck res:", res)
+            console.log("add words to deck res:", res);
+            setWords(initialInput);
          })
          .catch((err) => {
-           console.log(err.response); 
+           console.log(err.response);
+           setError(err.response.data.message); 
          })
+
+      
    }
 
    const inputArea = () => {
@@ -36,7 +41,8 @@ const AWTD = ({ show, deck_name }) => {
                className="addWordsTextArea"
             >
             </textarea>
-            <div type='submit' className="addWrdsSbmtBtn">Add</div>
+            {error && <div style={{color:'ivory'}}>Sorry, {error}.</div>}
+            <button type='submit' className="addWrdsSbmtBtn">Add</button>
          </form>
       )
    }

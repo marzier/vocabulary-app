@@ -20,7 +20,8 @@ const Register = (props) => {
       axios.post('http://localhost:6001/auth/register', creds)
          .then((res) => {
             console.log("successful registration, response: ", res);
-            props.history.push('/') // need to push to login
+            setCreds(initialCreds);
+            props.history.push('/login');
          })
          .catch((err) => {
             //console.log("error: ", err.response)

@@ -9,6 +9,7 @@ import './components/ChooseDeck';
 import PrepScholar from './word-lists/prep-scholar';
 import Kaplan from './word-lists/kaplan100';
 import Barrons_1 from './word-lists/barrons_subset_1';
+import Barrons_2 from './word-lists/barrons_subset_2';
 
 import ChooseDeck from './components/ChooseDeck';
 
@@ -24,7 +25,8 @@ function App(props) {
   const initialDecks = [
     {deck: PrepScholar, name:"Prep Scholar", path:"prepScholar"}, 
     {deck: Kaplan, name:"Kaplan", path:"kaplan"},
-    {deck: Barrons_1, name:"Barrons 1", path:"barrons"}
+    {deck: Barrons_1, name:"Barrons 1", path:"barrons"},
+    {deck: Barrons_2, name:"Barrons 2", path:"barrons2"}
   ];
 
   const [decks, setDecks] = useState(initialDecks);
@@ -94,7 +96,7 @@ function App(props) {
               <ChooseDeck {...props} 
                           deck={deckObj.deck} 
                           key={deckObj.path} 
-                          deckName={deckObj.path} /// rename to path??
+                          deckName={deckObj.path} /// rename to path?? TODO
                           name={deckObj.name}  />  /* deckName={deckObj.path} */
             )} />
           ))}

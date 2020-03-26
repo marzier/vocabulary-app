@@ -23,8 +23,8 @@ const Login = (props) => {
          .then((res) => {
             console.log("successful login, response: ", res);
             localStorage.setItem('token', res.data.token);
-            // setCreds(initialCreds)
-            //props.history.push('/')
+            setCreds(initialCreds);
+            props.history.push('/');
          })
          .catch((err) => {
             console.log("error: ", err.response)
