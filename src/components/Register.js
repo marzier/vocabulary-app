@@ -1,7 +1,5 @@
 import React, {useState } from 'react';
 import axios from 'axios';
-import { config } from 'react-transition-group';
-
 
 const Register = (props) => {
 

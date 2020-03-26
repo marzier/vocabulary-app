@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Route, Link } from 'react-router-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-
+import AddWordsToDeck from './AddWordsToDeck.js';
 
 import Groups from './Groups';
 
 function ChooseDeck(props) {
-   const [theDeck, setTheDeck] = useState(props.deck)
+   const [theDeck, setTheDeck] = useState(props.deck);
+   const [showAddWordsInput, setSAWI] = useState(false);
+
 
    //console.log("in choosedeck:", props);
-   
-   // useEffect(()=>{
-   //    setTheDeck(props.deck);
-   // }, []);
+    
+    useEffect(()=>{
+        setSAWI(showAddWordsInput)
+    }, 
+      [showAddWordsInput]);
    
   function arrayTo2DArray2(list, howMany) {
     var idx = 0
@@ -35,37 +38,38 @@ function ChooseDeck(props) {
       <Route exact path={`${props.match.path}`} render={()=>
          (
          <div>
-            <CSSTransitionGroup
-                transitionName="option2"
-                transitionEnterTimeout={100}
-                transitionLeaveTimeout={500}
-                transitionAppear={true}
-                transitionAppearTimeout={200}
-                transitionEnter={true}
-                transitionLeave={true}
-                unmountOnExit
-            >
-              <div class="choose_group">
-              <h2>{props.deckName}'s List</h2>
+            <CSSTransitionGroup transitionName="option2"
+                transitionEnterTimeout={100} transitionLeaveTimeout={500}
+                transitionAppear={true} transitionAppearTimeout={200}
+                transitionEnter={true} transitionLeave={true} unmountOnExit>
+              
+                <div class="choose_group">
+                  <h2>{props.deckName}'s List</h2>
 
-              <h3>&#8212; Choose Group &#8212;</h3>
+                  <h3>&#8212; Choose Group &#8212;</h3>
 
-              <div class="list_of_groups">
-                {splitDict.map((element, index)=>{
-                  // for purely aesthetics, add extra character to 1-9 so the groups line up on the page
-                  if (index<9) {
-                    return (
-                      <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
-                              {`G0${index+1}`}
-                      </Link>)
-                  }
-                  return (
-                      <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
-                              {`G${index+1}`}
-                      </Link> )
-                })}
-              </div>
-              </div>
+                  <div class="list_of_groups">
+                    {splitDict.map((element, index)=>{
+                      // for purely aesthetics, add extra character to 1-9 so the groups line up on the page
+                      if (index<9) {
+                        return (
+                          <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
+                                  {`G0${index+1}`}
+                          </Link>)
+                      }
+                      return (
+                          <Link className="link" to={`${props.match.url}/${index+1}`} key={index} >
+                                  {`G${index+1}`}
+                          </Link> )
+                    })}
+                  </div>
+
+                  <div className="addWordsButton" onClick={()=>setSAWI(!showAddWordsInput)}>Add Words To Deck</div>
+                  <AddWordsToDeck show={showAddWordsInput} deck_name={props.name} />
+
+                </div>
+
+
             </CSSTransitionGroup> 
          </div>
          

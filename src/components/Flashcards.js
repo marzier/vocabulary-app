@@ -71,7 +71,10 @@ const Flashcards = ({ stack, history, location }) =>{
       if (isFlipped) {
          return (
             <div class="isFlipped_display">
-               <h1 onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
+               <h1 
+                  onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} 
+                  <span role="img" aria-label="pronounce">&nbsp;&#128265;</span>
+               </h1>
 
             <CSSTransitionGroup
                transitionName="example"
@@ -90,7 +93,10 @@ const Flashcards = ({ stack, history, location }) =>{
       )} else {
          return (
             <div class="isFlipped_display">
-               <h1 onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} &#128265;</h1>
+               <h1 
+                  onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} 
+                  <span role="img" aria-label="pronounce">&nbsp;&#128265;</span>
+               </h1>
                <p class="gloss"></p> 
             </div>
          );
