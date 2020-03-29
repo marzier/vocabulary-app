@@ -2,8 +2,11 @@ import React, { useEffect , useState } from 'react';
 import { Swipeable } from "react-swipeable";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
+import { DelWord } from './FlshcrdButtons';
+import EditWord from './EditWord';
 
-const Flashcards = ({ stack, history, location }) =>{
+
+const Flashcards = ({ stack, history, location, name }) =>{
 
    let randomWord = stack[Math.floor(Math.random()*stack.length)];
 
@@ -12,6 +15,8 @@ const Flashcards = ({ stack, history, location }) =>{
 
    // the "stack.map" for listing words in that stack didn't work, unless I loaded it like this in state here
    const [stack2, setStack] = useState(stack);
+   const [editing, setEditing] = useState(false);
+
 
    const config = {
       // https://github.com/FormidableLabs/react-swipeable
@@ -48,7 +53,6 @@ const Flashcards = ({ stack, history, location }) =>{
 
         }
       };
-
       const handleEsc2 = (event) => {
          if (event.keyCode === 39) {
           console.log('right key pressed');
@@ -56,7 +60,6 @@ const Flashcards = ({ stack, history, location }) =>{
           setIsFlipped(false);
         }
       };
-
       window.addEventListener('keydown', handleEsc);
       window.addEventListener('keydown', handleEsc2);
 
@@ -71,19 +74,26 @@ const Flashcards = ({ stack, history, location }) =>{
       if (isFlipped) {
          return (
             <div class="isFlipped_display">
-               <h1 
-                  onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} 
-                  <span className="speaker" role="img" aria-label="pronounce">&nbsp;&#128265;</span>
+               <h1> 
+                  {flashCard[0].word} 
+                  <span className="speaker" 
+                        role="img" 
+                        aria-label="pronounce"
+                        onClick={(e)=>speak(e, flashCard[0].word)}>
+                     &nbsp;&#128265;
+                  </span>
+                  <span className="speaker" 
+                        role="img" 
+                        aria-label="edit"
+                        onClick={(e)=>{if (!e) e = window.event; e.stopPropagation(); setEditing(!editing) }}>
+                     &nbsp;&#128295;
+                  </span>
                </h1>
 
             <CSSTransitionGroup
-               transitionName="example"
-               transitionEnterTimeout={100}
-               transitionLeaveTimeout={100}
-               transitionAppear={true}
-               transitionAppearTimeout={100}
-               transitionEnter={true}
-               transitionLeave={true}>
+               transitionName="example" transitionEnterTimeout={100}  transitionLeaveTimeout={100}
+               transitionAppear={true}  transitionAppearTimeout={100} transitionEnter={true}
+                                                                      transitionLeave={true}>
                {flashCard.map((word)=>{
                   return <p class="gloss" key={Math.random()}>{word.gloss}</p>
                })}
@@ -91,15 +101,26 @@ const Flashcards = ({ stack, history, location }) =>{
 
             </div>
       )} else {
-         return (
-            <div class="isFlipped_display">
-               <h1 
-                  onClick={(e)=>speak(e, flashCard[0].word)}>{flashCard[0].word} 
-                  <span className="speaker" role="img" aria-label="pronounce">&nbsp;&#128265;</span>
-               </h1>
-               <p class="gloss"></p> 
-            </div>
-         );
+            return (
+               <div class="isFlipped_display">
+                  <h1> 
+                     {flashCard[0].word} 
+                     <span className="speaker" 
+                           role="img" 
+                           aria-label="pronounce"
+                           onClick={(e)=>speak(e, flashCard[0].word)}>
+                        &nbsp;&#128265;
+                     </span>
+                     <span className="speaker" 
+                           role="img" 
+                           aria-label="edit"
+                           onClick={(e)=>{if (!e) e = window.event; e.stopPropagation(); setEditing(!editing) }}>
+                        &nbsp;&#128295;
+                     </span>
+                  </h1>
+                  <p class="gloss"></p> 
+               </div>
+            );
       }
    }
 
@@ -108,6 +129,7 @@ const Flashcards = ({ stack, history, location }) =>{
       e.stopPropagation();
       setFlashCard(stack[Math.floor(Math.random()*stack.length)]);
       setIsFlipped(false);
+      setEditing(false);
    }
 
    const flipCard = (e) => {
@@ -130,13 +152,11 @@ const Flashcards = ({ stack, history, location }) =>{
       
       // find current stack number
       let current_stack_no = pathname.slice(pathname.length - 1)
-
       // create new path
       let next_group_url = `/barrons/groups/${current_group_no}/stack/${current_stack_no}`;
-
       history.push(next_group_url);
    }
-
+   
    return (
       <div>
          <CSSTransitionGroup
@@ -156,11 +176,18 @@ const Flashcards = ({ stack, history, location }) =>{
                      onClick={(e)=>{
                         getNextFlashCard(e);
                      }}>NEXT WORD&rarr;</button>
-                  <button className='button1' 
+                  <button className={location.pathname.indexOf('/Barrons/') != -1 ? "button1" : "buttonB"} 
                      onClick={()=>moveGroup("LEFT")}>&lArr;</button>
-                  <button className='button1' 
-                     onClick={()=>moveGroup("RIGHT")}>&rArr;</button>
+                  <button className={location.pathname.indexOf('/Barrons/') != -1 ? "button1" : "buttonB"} 
+                     onClick={()=>moveGroup("LEFT")}>&rArr;</button>
+                  
+                  
+                  <DelWord deck_name={name} word={flashCard[0].word} />
 
+                  {/* <button className="button1"
+                     onClick={()=>moveGroup("RIGHT")}>add to other deck</button> TODO */}
+
+                  <EditWord editing={editing} flashCard={flashCard} word={flashCard[0].word} definition={flashCard[0].gloss} deck_name={name}/>
                </div>
                </Swipeable>
 

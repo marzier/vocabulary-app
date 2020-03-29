@@ -11,6 +11,7 @@ const Login = (props) => {
    }
    const [ creds, setCreds ] = useState(initialCreds);
    const [ error2, setError2 ] = useState(null);
+   const [ success, setSuccess ] = useState('no');
    
    const handleChange = (e) => {
       setCreds({...creds, [e.target.name]:e.target.value})
@@ -23,8 +24,12 @@ const Login = (props) => {
          .then((res) => {
             console.log("successful login, response: ", res);
             localStorage.setItem('token', res.data.token);
-            setCreds(initialCreds);
-            props.history.push('/');
+            setSuccess('yes');
+            setTimeout(() => {
+               props.history.push('/');
+               window.location.reload(false);
+            }, 1700);
+            
          })
          .catch((err) => {
             console.log("error: ", err.response)
@@ -51,6 +56,7 @@ const Login = (props) => {
          <button class="submitButton" type="submit">Submit</button>
 
          {error2 && <div>{error2}</div>}
+         {success==='yes' ? <div className="link">Sucess! Navigating home...</div> : null}
       </form>
    );
 }

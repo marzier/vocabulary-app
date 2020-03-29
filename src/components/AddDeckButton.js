@@ -18,6 +18,7 @@ const AddDeckButton = ({ showModal }) => {
       axios.post('http://localhost:6001/decks', deckName, {headers:{authorization: localStorage.getItem('token')}})
          .then((res) => {
             console.log("add deck res:", res)
+            window.location.reload(false);
          })
          .catch((err) => {
            console.log(err.response); 
@@ -32,10 +33,10 @@ const AddDeckButton = ({ showModal }) => {
                name="deck_name" 
                placeholder="deck name"
                onChange={hndlChange}
-               
+               className="addDckInpt"
             >
             </input>
-            <button type='submit'>Add</button>
+            <button type='submit' className="addDckBtn">Add</button>
          </form>
       )
    }

@@ -1,18 +1,17 @@
 import React, {useState,useEffect} from 'react';
 import { Route, Link } from 'react-router-dom';
 import axios from 'axios';
+import './App.css';
+
 
 // import logo from './logo.svg';
 import './App.css';
 import './components/ChooseDeck';
 
-import PrepScholar from './word-lists/prep-scholar';
-import Kaplan from './word-lists/kaplan100';
 import Barrons_1 from './word-lists/barrons_subset_1';
 
 import ChooseDeck from './components/ChooseDeck';
 
-import './App.css';
 
 
 import Login from "./components/Login.js";
@@ -35,9 +34,6 @@ function App(props) {
       } 
     })
       .then(res => {
-        ////setUsers(res.data);   
-        //setDecks({...decks, res.data})
-
         const userDecks = res.data;
 
         const tempDecks = [...initialDecks];
@@ -56,6 +52,10 @@ function App(props) {
         console.log(err.response);
       });
   }, []);
+
+  function addDeckChild(newDeck) {
+    setDecks({...decks, newDeck})
+  }
 
 
   return (<>
@@ -82,8 +82,10 @@ function App(props) {
                         to={`/${deckObj.path}/groups`}>{deckObj.name}</Link>
                 ))}
 
-                <div className="deckOptionButton" onClick={()=>setSM(!showModal)}>Add Deck</div>
-                <Modal showModal={showModal}/>
+                <div className="deckOptionButton" onClick={()=>setSM(!showModal)}>
+                  {showModal ? 'Hide' : "Add Deck"}
+                </div>
+                <Modal showModal={showModal} />
  
             </div> )} 
           />

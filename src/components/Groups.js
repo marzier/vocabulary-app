@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Link } from 'react-router-dom';
-import Flashcards from './Flashcards';
+import Flashcards from './Flashcards/Flashcards';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 function Groups(props) {
+   const [name, setName] = useState(props.name);
 
    function getChunks(list, howMany) {
     var idx = 0
@@ -20,14 +21,12 @@ function Groups(props) {
   
   const stacks = getChunks(props.subList, 10)
 
-   useEffect(()=>{
-   }, [])
+  //  useEffect(()=>{
+  //  }, [])
 
 
   return (
     <>
-      {/*  */}
-
       <Route exact path={props.match.path} render={()=>
             
             <div>
@@ -55,11 +54,11 @@ function Groups(props) {
          } 
       />       
        
-       <div>
+       <div> 
           {stacks.map((element, index)=>{
             return <Route path={`${props.match.path}/stack/${index+1}`} key={index}
                           render={props=>
-                             <Flashcards {...props} stack={element} />
+                             <Flashcards {...props} stack={element} name={name}/>
                           } 
                     />
           })}

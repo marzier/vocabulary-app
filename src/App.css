@@ -43,6 +43,10 @@
   color: green !important;
 }
 
+.buttonB {
+  display: none;
+}
+
 .button1 {
   padding: 10px 22px;
   background-color: transparent;
@@ -305,7 +309,6 @@ p.gloss {
       border: 2px solid ivory !important;
       margin: 0px 3vw !important;
       padding: 10px 20px !important;
-      color: ivory;
       font-size: 16px !important;
     }
 }
@@ -374,7 +377,7 @@ p.gloss {
 
 }
 
-.submitButton {
+.submitButton, {
   padding: 10px 20px;
   font-size: calc(14px + 1vw);
   font-family: inherit;
@@ -448,4 +451,66 @@ p.gloss {
 
 .addWrdsSbmtBtn:active {
   transform: translateY(0px);
+}
+
+
+.addDckInpt {
+  padding: 5px 10px;
+  color: ivory;
+  font-size: 14px;
+  background-color: transparent;
+  font-family: inherit;
+  margin-right: 9px;
+}
+
+.addDckBtn  {
+  padding: 6px 16px;
+  font-size: calc(12px + .1vw);
+  font-family: inherit;
+  background-color: rgba(255,255,255, 0.90);
+  color: black;
+  transition: all .5s;
+  border: none;
+}
+
+
+.updateForm {
+  margin-top: 3.5vh;
+  position: relative;
+}
+
+
+.editWord, .editDef {
+  max-width: 15%;
+  padding: 10px 22px;
+  background-color: transparent;
+  color: grey;
+  font-size: .7em;
+  border: 1px solid grey;
+  transition: all .3s;
+}
+
+.editWord {
+  margin-right: 12px;
+}
+
+.editWord, .editSubmit {
+  transform: translateY(-50%)
+}
+.editWord:hover {
+  background-color: grey;
+  color: ivory;
+}
+
+.editDef {
+  max-width: 35%;
+  margin-right: 12px;
+}
+
+.editSubmit {
+  background-color: grey;
+  color: ivory;
+  padding: 10px 22px;
+  font-size: .7em;
+  border: none;
 }
