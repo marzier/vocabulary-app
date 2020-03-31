@@ -62,7 +62,7 @@ function App(props) {
 
 
   return (<>
-        <nav className="nav">
+        <nav className="nav"> {console.log("SERVER_URL:", process.env.SERVER_URL)}
             <Link to="/" className="navLinks">Home</Link>
             <Link to="/login" className="navLinks">Login</Link>
             <Link to="/register" className="navLinks">Register</Link>
