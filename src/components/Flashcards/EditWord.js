@@ -24,7 +24,7 @@ const EditWord = ({ editing, setEditing, word, definition, deck_name, flashCard 
    const hndlSubmit = (e) => {
       e.preventDefault();
 
-      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const baseUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:6001';
       const thisUrl = baseUrl + '/words';
 
       axios.put(thisUrl, updateObj, {headers:{authorization: localStorage.getItem('token')}})

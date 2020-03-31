@@ -71,7 +71,7 @@ export const AddToDeck = ({allDeckNamesCopy, word, definition}) => {
       //    } 
       //  })
 
-      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const baseUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:6001';
       const thisUrl = baseUrl + '/words/copy';
 
       axios.post(thisUrl, {deck_name:deckName, word, definition}, {headers:{authorization: localStorage.getItem('token')}})
