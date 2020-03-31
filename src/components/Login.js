@@ -35,8 +35,9 @@ const Login = (props) => {
             
          })
          .catch((err) => {
-            console.log("error: ", err.response)
-            err.response.data.message && setError2(err.response.data.message);
+            console.log("error: ", err)
+            // console.log("error: ", err.response)
+            // err.response.data.message && setError2(err.response.data.message);
          });
    }
    
