@@ -27,7 +27,7 @@ function App(props) {
   const [decks, setDecks] = useState(initialDecks);
   const [showModal, setSM] = useState(false);
 
-  const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+  const baseUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:6001';
   const thisUrl = baseUrl + '/decks';
 
   useEffect(() => {
@@ -62,7 +62,7 @@ function App(props) {
 
 
   return (<>
-        <nav className="nav"> {console.log("SERVER_URL:", process.env.SERVER_URL)}
+        <nav className="nav"> {console.log("REACT_APP_SERVER_URL:", process.env.REACT_APP_SERVER_URL)}
             <Link to="/" className="navLinks">Home</Link>
             <Link to="/login" className="navLinks">Login</Link>
             <Link to="/register" className="navLinks">Register</Link>
