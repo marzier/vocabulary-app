@@ -17,10 +17,13 @@ const AWTD = ({ show, deck_name }) => {
    const hndlSubmit = (e) => {
       e.preventDefault();
 
-      axios.post('http://localhost:6001/words', words, {headers:{authorization: localStorage.getItem('token')}})
+      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const thisUrl = baseUrl + '/words';
+      axios.post(thisUrl, words, {headers:{authorization: localStorage.getItem('token')}})
          .then((res) => {
-            console.log("add words to deck res:", res);
+            // console.log("add words to deck res:", res);
             setWords(initialInput);
+            window.location.reload(false);
          })
          .catch((err) => {
            console.log(err.response);

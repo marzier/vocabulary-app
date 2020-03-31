@@ -15,7 +15,10 @@ const AddDeckButton = ({ showModal }) => {
    const hndlSubmit = (e) => {
       e.preventDefault();
 
-      axios.post('http://localhost:6001/decks', deckName, {headers:{authorization: localStorage.getItem('token')}})
+      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const thisUrl = baseUrl + '/decks';
+
+      axios.post(thisUrl, deckName, {headers:{authorization: localStorage.getItem('token')}})
          .then((res) => {
             console.log("add deck res:", res)
             window.location.reload(false);

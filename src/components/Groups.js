@@ -6,6 +6,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 function Groups(props) {
    const [name, setName] = useState(props.name);
+   const allDeckNames = props.allDeckNames;
 
    function getChunks(list, howMany) {
     var idx = 0
@@ -58,7 +59,7 @@ function Groups(props) {
           {stacks.map((element, index)=>{
             return <Route path={`${props.match.path}/stack/${index+1}`} key={index}
                           render={props=>
-                             <Flashcards {...props} stack={element} name={name}/>
+                             <Flashcards {...props} stack={element} name={name} allDeckNames={allDeckNames}/>
                           } 
                     />
           })}

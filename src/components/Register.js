@@ -17,7 +17,10 @@ const Register = (props) => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      axios.post('http://localhost:6001/auth/register', creds)
+      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const thisUrl = baseUrl + '/auth/register';
+
+      axios.post(thisUrl, creds)
          .then((res) => {
             console.log("successful registration, response: ", res);
             setCreds(initialCreds);

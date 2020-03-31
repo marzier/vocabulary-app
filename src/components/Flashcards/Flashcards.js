@@ -2,11 +2,11 @@ import React, { useEffect , useState } from 'react';
 import { Swipeable } from "react-swipeable";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
-import { DelWord } from './FlshcrdButtons';
+import { DelWord, AddToDeck } from './FlshcrdButtons';
 import EditWord from './EditWord';
 
 
-const Flashcards = ({ stack, history, location, name }) =>{
+const Flashcards = ({ stack, history, location, name, allDeckNames }) =>{
 
    let randomWord = stack[Math.floor(Math.random()*stack.length)];
 
@@ -17,6 +17,7 @@ const Flashcards = ({ stack, history, location, name }) =>{
    const [stack2, setStack] = useState(stack);
    const [editing, setEditing] = useState(false);
 
+   const allDeckNamesCopy = allDeckNames;
 
    const config = {
       // https://github.com/FormidableLabs/react-swipeable
@@ -74,7 +75,7 @@ const Flashcards = ({ stack, history, location, name }) =>{
       if (isFlipped) {
          return (
             <div class="isFlipped_display">
-               <h1> 
+               <h1>
                   {flashCard[0].word} 
                   <span className="speaker" 
                         role="img" 
@@ -153,7 +154,7 @@ const Flashcards = ({ stack, history, location, name }) =>{
       // find current stack number
       let current_stack_no = pathname.slice(pathname.length - 1)
       // create new path
-      let next_group_url = `/barrons/groups/${current_group_no}/stack/${current_stack_no}`;
+      let next_group_url = `/Barrons/groups/${current_group_no}/stack/${current_stack_no}`;
       history.push(next_group_url);
    }
    
@@ -179,15 +180,15 @@ const Flashcards = ({ stack, history, location, name }) =>{
                   <button className={location.pathname.indexOf('/Barrons/') != -1 ? "button1" : "buttonB"} 
                      onClick={()=>moveGroup("LEFT")}>&lArr;</button>
                   <button className={location.pathname.indexOf('/Barrons/') != -1 ? "button1" : "buttonB"} 
-                     onClick={()=>moveGroup("LEFT")}>&rArr;</button>
-                  
+                     onClick={()=>moveGroup("RIGHT")}>&rArr;</button>
                   
                   <DelWord deck_name={name} word={flashCard[0].word} />
+                  <AddToDeck allDeckNamesCopy={allDeckNamesCopy} word={flashCard[0].word} definition={flashCard[0].gloss} />
 
                   {/* <button className="button1"
                      onClick={()=>moveGroup("RIGHT")}>add to other deck</button> TODO */}
 
-                  <EditWord editing={editing} flashCard={flashCard} word={flashCard[0].word} definition={flashCard[0].gloss} deck_name={name}/>
+                  <EditWord editing={editing} setEditing={setEditing} flashCard={flashCard} word={flashCard[0].word} definition={flashCard[0].gloss} deck_name={name}/>
                </div>
                </Swipeable>
 

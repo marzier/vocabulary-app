@@ -11,6 +11,7 @@ function ChooseDeck(props) {
 
    const [name, setName] = useState(props.name);
 
+   const allDeckNames = props.allDeckNames;
 
    //console.log("in choosedeck:", props);
     
@@ -81,7 +82,7 @@ function ChooseDeck(props) {
       {splitDict.map((element, index)=>{
       return <Route  path={`${props.match.path}/${index+1}`} key={index}
                      render={props=>
-                        <Groups {...props} subList={element} name={name} />
+                        <Groups {...props} subList={element} name={name} allDeckNames={allDeckNames} />
                      } 
               />
       })}

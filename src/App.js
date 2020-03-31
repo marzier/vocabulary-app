@@ -27,8 +27,11 @@ function App(props) {
   const [decks, setDecks] = useState(initialDecks);
   const [showModal, setSM] = useState(false);
 
+  const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+  const thisUrl = baseUrl + '/decks';
+
   useEffect(() => {
-    axios.get('http://localhost:6001/decks', {
+    axios.get(thisUrl, {
       headers: {
         authorization: localStorage.getItem('token')
       } 
@@ -96,7 +99,9 @@ function App(props) {
                           deck={deckObj.deck} 
                           key={deckObj.path} 
                           deckName={deckObj.path} /// rename to path?? TODO
-                          name={deckObj.name}  />  /* deckName={deckObj.path} */
+                          name={deckObj.name}
+                          allDeckNames = {decks.map(deckObj=>deckObj.name)}  />  
+                          
             )} />
           ))}
         </div>

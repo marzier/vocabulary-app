@@ -129,7 +129,7 @@ div.choose_list, .choose_group, .choose_stack {
   display: inline-block;
   margin: 1rem;
   padding: 3rem 3rem;
-  position: relative;
+  /* position: relative; */
   text-align: center;
   margin-top: 3vw;  /* */
   background: 
@@ -377,7 +377,7 @@ p.gloss {
 
 }
 
-.submitButton, {
+.submitButton {
   padding: 10px 20px;
   font-size: calc(14px + 1vw);
   font-family: inherit;
@@ -474,43 +474,92 @@ p.gloss {
 }
 
 
-.updateForm {
-  margin-top: 3.5vh;
-  position: relative;
-}
+.updateForm, .addToDeckModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
 
-.editWord, .editDef {
-  max-width: 15%;
-  padding: 10px 22px;
-  background-color: transparent;
-  color: grey;
-  font-size: .7em;
-  border: 1px solid grey;
-  transition: all .3s;
+  background: rgba(0, 19, 38, 0.97);
+  box-shadow: 1;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);  
+  padding: 14vw 11vw;
+
+  display: flex;
+  flex-direction: column;
+  border: 2px solid ivory;
+  border-radius: 10px;
+ 
 }
 
 .editWord {
-  margin-right: 12px;
+  padding: 10px 22px;
+  background-color: transparent;
+  color: ivory;
+  font-size: 1em;
+  border: 1px solid ivory;
+  transition: all .3s;
 }
 
-.editWord, .editSubmit {
-  transform: translateY(-50%)
-}
 .editWord:hover {
   background-color: grey;
   color: ivory;
 }
 
 .editDef {
-  max-width: 35%;
-  margin-right: 12px;
+  font-family: inherit !important;
+
+  padding: 10px 22px;
+  background-color: transparent;
+  color: ivory;
+  font-size: .7em;
+  border: 1px solid ivory;
+  height: 20vh;
+  transition: all .3s;
 }
 
 .editSubmit {
+  font-family: inherit !important;
+  padding: 10px 22px;
+  background-color: ivory;
+  color: black;
+  font-size: 1em;
+  border: 1px solid ivory;
+  transition: all .3s;
+}
+
+.editSubmit:hover {
   background-color: grey;
   color: ivory;
-  padding: 10px 22px;
-  font-size: .7em;
-  border: none;
+}
+
+.updateForm span {
+  font-size: 30px;
+}
+
+
+.addToDeckModal h2 {
+  text-align: center;
+  color: ivory;
+}
+
+.addToDeckBtns, .addToDeckCncl {
+  border: 1px solid ivory;
+  margin: 1.25vw 0px;
+  padding: 2vw 4vw;
+  background: transparent;
+  color: ivory;
+  font-size: calc(12px + .4vw);
+  transition: all .3s ease;
+}
+
+.addToDeckBtns:hover {
+  background: ivory;
+  color: rgba(0, 19, 38, 1);
+}
+
+.addToDeckCncl {
+  background: ivory;
+  color: rgba(0, 19, 38, 1);
 }

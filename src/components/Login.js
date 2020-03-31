@@ -20,7 +20,10 @@ const Login = (props) => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      axios.post('http://localhost:6001/auth/login', creds)
+      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const thisUrl = baseUrl + '/auth/login';
+
+      axios.post(thisUrl, creds)
          .then((res) => {
             console.log("successful login, response: ", res);
             localStorage.setItem('token', res.data.token);

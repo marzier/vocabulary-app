@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const EditWord = ({ editing, word, definition, deck_name, flashCard }) => {
+const EditWord = ({ editing, setEditing, word, definition, deck_name, flashCard }) => {
    const initState = {
       "originalWord": word,
       "word": word,
@@ -24,7 +24,10 @@ const EditWord = ({ editing, word, definition, deck_name, flashCard }) => {
    const hndlSubmit = (e) => {
       e.preventDefault();
 
-      axios.put('http://localhost:6001/words', updateObj, {headers:{authorization: localStorage.getItem('token')}})
+      const baseUrl = process.env.SERVER_URL || 'http://localhost:6001';
+      const thisUrl = baseUrl + '/words';
+
+      axios.put(thisUrl, updateObj, {headers:{authorization: localStorage.getItem('token')}})
          .then((res) => {
             console.log("edited word, res:", res)
             window.location.reload(false);
@@ -54,7 +57,15 @@ const EditWord = ({ editing, word, definition, deck_name, flashCard }) => {
                placeholder="def"
                onChange={hndlChange}>
             </textarea>
+            
             <button type='submit' className="editSubmit">Update</button>
+            
+            <span className="speaker" 
+                           role="img" 
+                           aria-label="edit"
+                           onClick={(e)=>{if (!e) e = window.event; e.stopPropagation(); setEditing(!editing) }}>
+                        &nbsp;&#128295;
+            </span>
          </form>
       )
    }
