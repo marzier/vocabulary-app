@@ -10,7 +10,9 @@ export const DelWord = ({deck_name, word}) => {
       if (!e) e = window.event;
       e.stopPropagation();
 
-      axios.delete('http://localhost:6001/words', {
+      const baseUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:6001';
+      const thisUrl = baseUrl + '/words';
+      axios.delete(thisUrl, {
          headers: {
            authorization: localStorage.getItem('token')
          },

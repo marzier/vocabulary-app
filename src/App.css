@@ -563,3 +563,9 @@ p.gloss {
   background: ivory;
   color: rgba(0, 19, 38, 1);
 }
+
+
+.wrdNotFoundMsg {
+  margin-top: 1.5vh;
+  color: ivory;
+}

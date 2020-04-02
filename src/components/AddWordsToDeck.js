@@ -4,11 +4,15 @@ import axios from 'axios';
 const AWTD = ({ show, deck_name }) => {
    const initialInput = {
       words: '',
-      deck_name
+      deck_name,
+      error: null,
+      wordsNotFound: [],
    };
 
    const [words, setWords] = useState(initialInput);
-   const [error, setError] = useState(null);
+
+   // const [error, setError] = useState(null);
+   // const [wordsNotFound, setWNF ] = useState([]);
 
    const hndlChange = (e) => {
       setWords({...words, [e.target.name]:e.target.value});
@@ -21,13 +25,27 @@ const AWTD = ({ show, deck_name }) => {
       const thisUrl = baseUrl + '/words';
       axios.post(thisUrl, words, {headers:{authorization: localStorage.getItem('token')}})
          .then((res) => {
-            // console.log("add words to deck res:", res);
-            setWords(initialInput);
-            window.location.reload(false);
+            //console.log("add words to deck res:", res);
+            setWords({
+               ...words,
+               wordsNotFound: res.data.notFound,
+               words: initialInput.words,
+               error:null
+            }) 
+
+            setTimeout(() => {
+               window.location.reload(false);
+            }, 2500);
          })
          .catch((err) => {
-           console.log(err.response);
-           setError(err.response.data.message); 
+           console.log("error: ", err);
+           console.log("err.response: ",err.response);
+           setWords({
+            ...words,
+            error: err.response.data.message,
+            wordsNotFound: [],
+            words: initialInput.words,
+         }) 
          })
 
       
@@ -38,14 +56,19 @@ const AWTD = ({ show, deck_name }) => {
          <form onSubmit={hndlSubmit} className="addWordsForm"> 
             <textarea 
                type='text' 
-               name="words" 
+               name="words"
+               value={words.words} 
                placeholder="word1&#10;word2&#10;word3&#10;...etc"
                onChange={hndlChange}
                className="addWordsTextArea"
             >
             </textarea>
-            {error && <div style={{color:'ivory'}}>Sorry, {error}.</div>}
+            {words.error && <div style={{color:'ivory'}}>Sorry, {words.error}.</div>}
             <button type='submit' className="addWrdsSbmtBtn">Add</button>
+            <div className="wrdNotFoundMsg">
+               <span>{words.wordsNotFound.length ? 'Success, added all words except:' : null} </span>
+               {words.wordsNotFound.map(word=> <span>{word+' '}</span>)}
+            </div>
          </form>
       )
    }
