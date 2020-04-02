@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const AWTD = ({ show, deck_name }) => {
+const AWTD = ({ show, deck_name, setSAWI, showAddWordsInput }) => {
    const initialInput = {
       words: '',
       deck_name,
@@ -68,6 +68,9 @@ const AWTD = ({ show, deck_name }) => {
             <div className="wrdNotFoundMsg">
                <span>{words.wordsNotFound.length ? 'Success, added all words except:' : null} </span>
                {words.wordsNotFound.map(word=> <span>{word+' '}</span>)}
+            </div>
+            <div className="addWrdsCncl" onClick={()=>setSAWI(!showAddWordsInput)}>
+               Close
             </div>
          </form>
       )

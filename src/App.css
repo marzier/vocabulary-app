@@ -414,23 +414,37 @@ p.gloss {
 }
 
 .addWordsForm {
-  display: block;
+  /* display: block;
   text-align: center;
-  margin: 0 auto;
+  margin: 0 auto; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background: rgba(0, 19, 38, 0.97);
+  box-shadow: 1;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);  
+  padding: 12vw 10vw;
+
+  display: flex;
+  flex-direction: column;
+  border: 2px solid ivory;
+  border-radius: 10px;
 
 }
 
 .addWordsTextArea {
-  width: 45%;
+
   margin: 10px auto 0 auto;
   display: block;
-  height: 14vw;
+  height: 18vw;
   font-family: inherit;
   background: rgba(255, 255, 240, 0.5)
 
 }
 
-.addWrdsSbmtBtn {
+.addWrdsSbmtBtn, .addWrdsCncl {
   display: inline-block;
   margin: 14px auto 0 auto;
   padding: 1.2vw 4.4vw;
@@ -453,6 +467,21 @@ p.gloss {
   transform: translateY(0px);
 }
 
+.addWrdsCncl {
+  display: inline-block;
+  padding: .8vw 3.5vw;
+  color: ivory;
+  font-size: calc(12px + .2vw);
+  border-radius: 3px;
+  background: transparent;
+  border: 1px solid ivory;
+  transition: all .4s;
+}
+
+.addWrdsCncl:hover {
+  color: black;
+  background: ivory;
+}
 
 .addDckInpt {
   padding: 5px 10px;

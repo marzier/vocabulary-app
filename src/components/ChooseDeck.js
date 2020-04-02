@@ -68,7 +68,7 @@ function ChooseDeck(props) {
                   </div>
 
                   <div className="addWordsButton" onClick={()=>setSAWI(!showAddWordsInput)}>Add Words To Deck</div>
-                  <AddWordsToDeck show={showAddWordsInput} deck_name={props.name} />
+                  <AddWordsToDeck show={showAddWordsInput} deck_name={props.name} setSAWI={setSAWI} showAddWordsInput={showAddWordsInput}/>
 
                 </div>
 
