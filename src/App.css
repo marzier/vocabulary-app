@@ -195,6 +195,7 @@ div.choose_list, .choose_group, .choose_stack {
 p.gloss {
   display: inline-block;
   font-size: calc(10px + 0.75vw); /* calc(10px + 2vmin); */ 
+  white-space: pre-line;
 }
 
 .stackList {
@@ -440,8 +441,7 @@ p.gloss {
   display: block;
   height: 18vw;
   font-family: inherit;
-  background: rgba(255, 255, 240, 0.5)
-
+  background: rgba(255, 255, 240, 0.5);
 }
 
 .addWrdsSbmtBtn, .addWrdsCncl {

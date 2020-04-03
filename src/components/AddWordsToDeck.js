@@ -58,7 +58,7 @@ const AWTD = ({ show, deck_name, setSAWI, showAddWordsInput }) => {
                type='text' 
                name="words"
                value={words.words} 
-               placeholder="word1&#10;word2&#10;word3&#10;...etc"
+               placeholder="each word MUST be on a new line"
                onChange={hndlChange}
                className="addWordsTextArea"
             >
